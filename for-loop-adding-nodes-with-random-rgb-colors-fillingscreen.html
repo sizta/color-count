@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    button {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    /* p {
+        display: inline-block;
+
+
+    } */
+    .flex-container, #change {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: horizontal;
+        -moz-box-orient: horizontal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: start;
+        -moz-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-box-align: stretch;
+        -moz-box-align: stretch;
+        -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+
+        background: yellow;
+        width: 100%;
+        height: 100%;
+    }
+
+    .flex-item, p {
+        background-color: aliceblue;
+        padding: 10px;
+        margin: 0px;
+        /*width: 40px;
+        height: 40px;*/
+
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1 0 25%;
+        -ms-flex: 1 0 25%;
+        flex: 1 0 25%;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+    }
+
+
+
+</style>
+</head>
+<body onload="calculateBoxes()" id="theBody">
+<div id="change"></div>
+<button id="click" onclick="return colorNow()">Click here</button>
+<script>
+    function calculateBoxes() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var windowSurface = w * h;
+        possibleBoxes = Math.floor(windowSurface / (60 * 60));
+        console.log(w, h, possibleBoxes);
+    }
+
+
+    function colorNow() {
+
+
+        function generateColors() {
+
+                var r = Math.floor(Math.random() * (255 + 1)); /* generating a random value between 0 and 255 */
+                var g = Math.floor(Math.random() * (255 + 1)); /* generating a random value between 0 and 255 */
+                var b = Math.floor(Math.random() * (255 + 1)); /* generating a random value between 0 and 255 */
+                var random_color = "rgb(" + r + ", " + g + ", " + b + ")"; /* assemble the RGB color value */
+
+                var node = document.createElement("p"); /* generate empty <p> tag */
+                node.style.backgroundColor = random_color; /* add the color to the <p> tag background */
+                var textnode = document.createTextNode(number); /* insert a textnode with the generated number from for loop */
+                node.appendChild(textnode); /* add the textnode into the <p> */
+
+
+                document.getElementById("change").appendChild(node); /* add the new <p> tag with its content into the DOM */
+
+        }
+
+        /* var end = 10; */
+        var number = 0;
+
+            for (i = 0; i < possibleBoxes; i++ ) {
+                    setTimeout(function (e) {/* still don't understand why e and extra function is needed but it works :-) */
+                        generateColors(e);
+                        number++; /* needed to count upwards */
+                    }, 70 * i); /* "* i" needed to slow down the inserting of the <p>s */
+            }
+    }
+
+</script>
+</body>
+</html>
